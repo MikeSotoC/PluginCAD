@@ -56,4 +56,34 @@ public class SurveyCommandRegistry
             cad.ShowMessage("Error GS-T-CN", $"Error al generar curvas de nivel: {ex.Message}");
         }
     }
+
+    [CommandMethod("GS-T-PERF")]
+    public static void CreateProfile()
+    {
+        try
+        {
+            var cad = CadServiceFactory.Create();
+            new ProfileCmd(cad).Execute();
+        }
+        catch (System.Exception ex)
+        {
+            var cad = CadServiceFactory.Create();
+            cad.ShowMessage("Error GS-T-PERF", $"Error al generar perfil: {ex.Message}");
+        }
+    }
+
+    [CommandMethod("GS-T-VOL")]
+    public static void CalculateVolume()
+    {
+        try
+        {
+            var cad = CadServiceFactory.Create();
+            new VolumeCmd(cad).Execute();
+        }
+        catch (System.Exception ex)
+        {
+            var cad = CadServiceFactory.Create();
+            cad.ShowMessage("Error GS-T-VOL", $"Error al calcular volúmenes: {ex.Message}");
+        }
+    }
 }

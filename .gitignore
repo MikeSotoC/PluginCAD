@@ -1,37 +1,21 @@
 ```
 # Build artifacts
-*.obj
-*.exe
+bin/
+obj/
 *.dll
+*.exe
 *.pdb
+*.config
 *.user
-*.suo
-*.cache
-*.tlog
-*.log
-*.tmp
 
 # Dependencies
 packages/
 node_modules/
-lib/
-
-# IDE specific
-.vs/
-.vshost.exe
-.userprefs
-*.userosscache
-*.sln.docstates
-
-# OS generated
-.DS_Store
-Thumbs.db
-desktop.ini
 
 # Logs
 *.log
 
-# Temporary files
-*.tmp
-*~
+# User-specific files
+.vs/
+*.userprefs
 ```
