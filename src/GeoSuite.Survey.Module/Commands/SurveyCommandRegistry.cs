@@ -1,40 +1,59 @@
 using Autodesk.AutoCAD.Runtime;
 using GeoSuite.Platform;
-using GeoSuite.Platform.AcadImpl;
 using GeoSuite.Survey.Module.Commands;
 
 [assembly: CommandClass(typeof(GeoSuite.Survey.Module.Commands.SurveyCommandRegistry))]
 
 namespace GeoSuite.Survey.Module.Commands;
 
+/// <summary>
+/// Registro de comandos del módulo de Topografía.
+/// Detecta automáticamente la plataforma (AutoCAD/ZWCAD) mediante CadServiceFactory.
+/// </summary>
 public class SurveyCommandRegistry
 {
-    private static ICadHost GetCadHost() => new AcadHost();
-
     [CommandMethod("GS-T-IMP")]
     public static void ImportPoints()
     {
-        var cad = GetCadHost();
-        // En implementación real, mostrar diálogo para seleccionar archivo
-        string filePath = "C:\\temp\\puntos.csv"; // Placeholder
-        new ImportPointsCmd(cad).Execute(filePath);
+        try
+        {
+            var cad = CadServiceFactory.Create();
+            new ImportPointsCmd(cad).Execute();
+        }
+        catch (System.Exception ex)
+        {
+            var cad = CadServiceFactory.Create();
+            cad.ShowMessage("Error GS-T-IMP", $"Error al importar puntos: {ex.Message}");
+        }
     }
 
     [CommandMethod("GS-T-TIN")]
     public static void CreateTin()
     {
-        var cad = GetCadHost();
-        // En implementación real, obtener puntos de la base de datos o selección
-        var points = new List<Core.Models.SurveyPoint>(); // Placeholder
-        new CreateTinCmd(cad).Execute(points);
+        try
+        {
+            var cad = CadServiceFactory.Create();
+            new CreateTinCmd(cad).Execute();
+        }
+        catch (System.Exception ex)
+        {
+            var cad = CadServiceFactory.Create();
+            cad.ShowMessage("Error GS-T-TIN", $"Error al generar TIN: {ex.Message}");
+        }
     }
 
     [CommandMethod("GS-T-CN")]
     public static void CreateContours()
     {
-        var cad = GetCadHost();
-        var points = new List<Core.Models.SurveyPoint>(); // Placeholder
-        double interval = 1.0; // metros
-        new ContoursCmd(cad).Execute(points, interval);
+        try
+        {
+            var cad = CadServiceFactory.Create();
+            new ContoursCmd(cad).Execute();
+        }
+        catch (System.Exception ex)
+        {
+            var cad = CadServiceFactory.Create();
+            cad.ShowMessage("Error GS-T-CN", $"Error al generar curvas de nivel: {ex.Message}");
+        }
     }
 }
