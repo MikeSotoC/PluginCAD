@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0-windows</TargetFramework>
+    <UseWindowsForms>true</UseWindowsForms>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <OutputType>Library</OutputType>
+    <AssemblyName>GeoSuite.UI.WinForms</AssemblyName>
+    <RootNamespace>GeoSuite.UI.WinForms</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\GeoSuite.Core\GeoSuite.Core.csproj" />
+    <ProjectReference Include="..\GeoSuite.Platform\GeoSuite.Platform.csproj" />
+  </ItemGroup>
+
+</Project>

@@ -1,91 +1,37 @@
 ```
-# Build results
-bin/
-obj/
-out/
+# Build artifacts
+*.obj
+*.exe
+*.dll
+*.pdb
+*.user
+*.suo
+*.cache
+*.tlog
+*.log
+*.tmp
 
 # Dependencies
 packages/
+node_modules/
+lib/
+
+# IDE specific
+.vs/
+.vshost.exe
+.userprefs
+*.userosscache
+*.sln.docstates
+
+# OS generated
+.DS_Store
+Thumbs.db
+desktop.ini
 
 # Logs
 *.log
 
-# User-specific files
-.vs/
-*.user
-*.suo
-*.userosscache
-*.sln.docstates
-
-# Visual Studio cache/options
-.vsconfig
-*.VC.db
-*.VC.VC.opendb
-
-# MSTest test Results
-[Tt]est[Rr]esult*/
-[Bb]uild[Ll]og.*
-
-# NUNIT
-*.VisualState.xml
-TestResult.xml
-
-# Build Results of an ATL Project
-[Dd]ebugPS/
-[Rr]eleasePS/
-dlldata.c
-
-# Benchmark Results
-BenchmarkDotNet.Artifacts/
-
-# .NET Core
-project.lock.json
-project.fragment.lock.json
-artifacts/
-
-# StyleCop
-StyleCopReport.xml
-
-# Files built by Visual Studio
-*_i.c
-*_p.c
-*_h.h
-*.ilk
-*.meta
-*.objdata
-*.iobj
-*.ipdb
-*.pdb
-*.i
-*.l
-*.y
-*.rej
+# Temporary files
+*.tmp
 *~
-*.orig
-*.cmd
-*.bat
-*.exe
-*.dll
-*.so
-*.dylib
-*.nupkg
-*.msi
-*.msp
-*.msm
-
-# OS generated files
-.DS_Store
-.DS_Store?
-._*
-.Spotlight-V100
-.Trashes
-ehthumbs.db
-Thumbs.db
-desktop.ini
-
-# Environment specific settings
-.env
-.env.local
-.env.*
-!*.env.example
 ```

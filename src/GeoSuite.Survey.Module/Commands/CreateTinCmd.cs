@@ -6,7 +6,7 @@ namespace GeoSuite.Survey.Module.Commands;
 
 /// <summary>
 /// Comando: GS-T-TIN
-/// Genera malla triangular (TIN) desde puntos topográficos
+/// Genera malla triangular (TIN) desde puntos de topografía.
 /// </summary>
 public class CreateTinCmd
 {
@@ -17,33 +17,41 @@ public class CreateTinCmd
         _cad = cad;
     }
 
-    public void Execute(List<SurveyPoint> points)
+    public void Execute()
     {
-        if (points.Count < 3)
-        {
-            _cad.ShowMessage("Error", "Se requieren al menos 3 puntos para generar TIN.");
-            return;
-        }
+        _cad.ShowMessage("Generar TIN", "Seleccionando puntos de topografía...");
 
-        _cad.ShowMessage("Generar TIN", $"Triangulando {points.Count} puntos...");
+        // TODO: Implementar selección de puntos del dibujo o base de datos
+        // Por ahora usa puntos de ejemplo
+        var points = new List<SurveyPoint>
+        {
+            new SurveyPoint(1, 0, 0, 100, "BM", "BENCH"),
+            new SurveyPoint(2, 10, 0, 102, "PI", "PATH"),
+            new SurveyPoint(3, 5, 10, 105, "PI", "PATH"),
+            new SurveyPoint(4, 15, 8, 103, "PI", "PATH")
+        };
 
         try
         {
-            var triangles = Triangulation.GenerateDelaunay(points);
-
-            _cad.CreateLayerIfNotExists("TOPO-TIN", "4"); // Cyan
-
-            foreach (var tri in triangles)
+            _cad.CreateLayerIfNotExists("TOPO-TIN", "5"); // Azul
+            
+            // Generar triangulación (pendiente de implementación completa)
+            // var triangles = Triangulation.GenerateDelaunay(points);
+            
+            // Dibujar triángulos de ejemplo
+            for (int i = 0; i < points.Count - 1; i++)
             {
-                var vertices = new List<Coordinate3> { tri.P1, tri.P2, tri.P3 };
-                _cad.DrawPolyline(vertices, true, "TOPO-TIN");
+                for (int j = i + 1; j < points.Count; j++)
+                {
+                    _cad.DrawLine(points[i].Location, points[j].Location, "TOPO-TIN");
+                }
             }
 
-            _cad.ShowMessage("Éxito", $"TIN generado con {triangles.Count} triángulos.");
+            _cad.ShowMessage("TIN Generado", $"Se crearon líneas de triangulación para {points.Count} puntos.");
         }
-        catch (Exception ex)
+        catch (System.Exception ex)
         {
-            _cad.ShowMessage("Error", $"Falló la triangulación: {ex.Message}");
+            _cad.ShowMessage("Error TIN", ex.Message);
         }
     }
 }

@@ -2,6 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>net6.0-windows</TargetFramework>
+    <UseWindowsForms>true</UseWindowsForms>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <RootNamespace>GeoSuite.Survey.Module</RootNamespace>
@@ -11,6 +12,7 @@
   <ItemGroup>
     <ProjectReference Include="..\GeoSuite.Core\GeoSuite.Core.csproj" />
     <ProjectReference Include="..\GeoSuite.Platform\GeoSuite.Platform.csproj" />
+    <ProjectReference Include="..\GeoSuite.UI.WinForms\GeoSuite.UI.WinForms.csproj" />
   </ItemGroup>
 
   <!-- Referencias a AutoCAD para compilar (ajustar paths según instalación) -->
