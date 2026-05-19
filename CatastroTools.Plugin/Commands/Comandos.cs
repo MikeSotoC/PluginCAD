@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using CatastroTools.CAD;
 using CatastroTools.CAD.Interfaces;
 using CatastroTools.Core.Export;
 using CatastroTools.Core.Geometry;
@@ -9,7 +10,7 @@ using CatastroTools.Core.Models;
 using CatastroTools.Plugin.UI;
 
 #if ZWCAD
-using ZwCAD.Runtime;
+using ZwSoft.ZwCAD.Runtime;
 #elif AUTOCAD
 using Autodesk.AutoCAD.Runtime;
 #endif
@@ -95,7 +96,7 @@ namespace CatastroTools.Plugin.Commands
                 Cad.MensajeConsola($"✓ {lotes.Count} lotes etiquetados.");
             }
             catch (OperationCanceledException) { Cad.MensajeConsola("Cancelado."); }
-            catch (Exception ex) { Cad.MensajeError(ex.Message); }
+            catch (System.Exception ex) { Cad.MensajeError(ex.Message); }
         }
 
         [CommandMethod("CT-COLIN-AUTO")]
@@ -129,7 +130,7 @@ namespace CatastroTools.Plugin.Commands
 
                 Cad.MensajeConsola($"✓ Colindancias etiquetadas en {lotes.Count} lotes.");
             }
-            catch (Exception ex) { Cad.MensajeError(ex.Message); }
+            catch (System.Exception ex) { Cad.MensajeError(ex.Message); }
         }
 
         [CommandMethod("CT-HABILITACION")]
@@ -176,7 +177,7 @@ namespace CatastroTools.Plugin.Commands
                 Cad.MensajeConsola($"✓ {idx} lotes generados ({nCols}×{nFilas}).");
             }
             catch (OperationCanceledException) { Cad.MensajeConsola("Cancelado."); }
-            catch (Exception ex) { Cad.MensajeError(ex.Message); }
+            catch (System.Exception ex) { Cad.MensajeError(ex.Message); }
         }
 
         [CommandMethod("CT-SUBDIV")]
@@ -207,7 +208,7 @@ namespace CatastroTools.Plugin.Commands
                 Cad.MensajeConsola($"  Lote B: {polyB.Area:F2} m²");
             }
             catch (OperationCanceledException) { Cad.MensajeConsola("Cancelado."); }
-            catch (Exception ex) { Cad.MensajeError(ex.Message); }
+            catch (System.Exception ex) { Cad.MensajeError(ex.Message); }
         }
     }
 
@@ -239,7 +240,7 @@ namespace CatastroTools.Plugin.Commands
                 Cad.MensajeConsola($"✓ Lote {lote.Numero} etiquetado — {lote.Area:F2} m²");
             }
             catch (OperationCanceledException) { Cad.MensajeConsola("Cancelado."); }
-            catch (Exception ex) { Cad.MensajeError(ex.Message); }
+            catch (System.Exception ex) { Cad.MensajeError(ex.Message); }
         }
 
         [CommandMethod("CT-ACOTAR")]
@@ -262,7 +263,7 @@ namespace CatastroTools.Plugin.Commands
                 Cad.MensajeConsola($"✓ Lote {lote.Numero} acotado — {lote.Area:F2} m²");
             }
             catch (OperationCanceledException) { Cad.MensajeConsola("Cancelado."); }
-            catch (Exception ex) { Cad.MensajeError(ex.Message); }
+            catch (System.Exception ex) { Cad.MensajeError(ex.Message); }
         }
 
         [CommandMethod("CT-LINDEROS")]
@@ -282,7 +283,7 @@ namespace CatastroTools.Plugin.Commands
                 Dib.DibujarLinderos(lote, cfg);
                 Cad.MensajeConsola($"✓ {lote.Poligono.NumVertices} linderos etiquetados.");
             }
-            catch (Exception ex) { Cad.MensajeError(ex.Message); }
+            catch (System.Exception ex) { Cad.MensajeError(ex.Message); }
         }
 
         [CommandMethod("CT-VERTICES")]
@@ -301,7 +302,7 @@ namespace CatastroTools.Plugin.Commands
                 Cad.MensajeConsola($"✓ {lote.Poligono.NumVertices} vértices marcados.");
             }
             catch (OperationCanceledException) { Cad.MensajeConsola("Cancelado."); }
-            catch (Exception ex) { Cad.MensajeError(ex.Message); }
+            catch (System.Exception ex) { Cad.MensajeError(ex.Message); }
         }
 
         [CommandMethod("CT-IMPORTAR-COORDS")]
@@ -326,7 +327,7 @@ namespace CatastroTools.Plugin.Commands
                 var poly = new Poligono(puntos);
                 Cad.MensajeConsola($"✓ Polilínea creada — {puntos.Count} vértices — {poly.Area:F2} m²");
             }
-            catch (Exception ex) { Cad.MensajeError(ex.Message); }
+            catch (System.Exception ex) { Cad.MensajeError(ex.Message); }
         }
     }
 
@@ -358,7 +359,7 @@ namespace CatastroTools.Plugin.Commands
                 Cad.MensajeConsola("✓ Tabla de datos técnicos insertada.");
             }
             catch (OperationCanceledException) { Cad.MensajeConsola("Cancelado."); }
-            catch (Exception ex) { Cad.MensajeError(ex.Message); }
+            catch (System.Exception ex) { Cad.MensajeError(ex.Message); }
         }
 
         [CommandMethod("CT-TABLA-COORDS")]
@@ -374,7 +375,7 @@ namespace CatastroTools.Plugin.Commands
                 Cad.MensajeConsola("✓ Tabla de coordenadas insertada.");
             }
             catch (OperationCanceledException) { Cad.MensajeConsola("Cancelado."); }
-            catch (Exception ex) { Cad.MensajeError(ex.Message); }
+            catch (System.Exception ex) { Cad.MensajeError(ex.Message); }
         }
 
         [CommandMethod("CT-TABLA-COLIN")]
@@ -389,7 +390,7 @@ namespace CatastroTools.Plugin.Commands
                 Cad.MensajeConsola("✓ Tabla de colindancias insertada.");
             }
             catch (OperationCanceledException) { Cad.MensajeConsola("Cancelado."); }
-            catch (Exception ex) { Cad.MensajeError(ex.Message); }
+            catch (System.Exception ex) { Cad.MensajeError(ex.Message); }
         }
     }
 
@@ -422,7 +423,7 @@ namespace CatastroTools.Plugin.Commands
                 try { System.Diagnostics.Process.Start(ruta); } catch { }
             }
             catch (OperationCanceledException) { Cad.MensajeConsola("Cancelado."); }
-            catch (Exception ex) { Cad.MensajeError(ex.Message); }
+            catch (System.Exception ex) { Cad.MensajeError(ex.Message); }
         }
 
         [CommandMethod("CT-EXPORT-CSV")]
@@ -439,7 +440,7 @@ namespace CatastroTools.Plugin.Commands
                 ExportadorCSV.ExportarVertices(lote, ruta, zona);
                 Cad.MensajeConsola($"✓ CSV exportado: {ruta}");
             }
-            catch (Exception ex) { Cad.MensajeError(ex.Message); }
+            catch (System.Exception ex) { Cad.MensajeError(ex.Message); }
         }
 
         [CommandMethod("CT-LIMPIAR")]
@@ -450,7 +451,7 @@ namespace CatastroTools.Plugin.Commands
                 CatastroPlugin.Plataforma.Purgar();
                 Cad.MensajeConsola("✓ Dibujo purgado y auditado.");
             }
-            catch (Exception ex) { Cad.MensajeError(ex.Message); }
+            catch (System.Exception ex) { Cad.MensajeError(ex.Message); }
         }
     }
 
@@ -500,7 +501,7 @@ namespace CatastroTools.Plugin.Commands
                     Cad.MensajeConsola("✓ Configuración actualizada.");
                 }
             }
-            catch (Exception ex) { Cad.MensajeError(ex.Message); }
+            catch (System.Exception ex) { Cad.MensajeError(ex.Message); }
         }
 
         [CommandMethod("CT-PROYECTO")]

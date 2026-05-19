@@ -35,7 +35,7 @@ namespace CatastroTools.UI.Views
         {
             var btn = (Button)sender;
             var tag = btn.Tag?.ToString() ?? "";
-            _ventana?.NavEgarA(tag);
+            _ventana?.EjecutarComando?.Invoke(tag);
         }
     }
 }

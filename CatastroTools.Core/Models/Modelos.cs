@@ -1,3 +1,4 @@
+using CatastroTools.Core.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -264,8 +265,8 @@ namespace CatastroTools.Core.Models
             if (tipo == TipoVia.PasajePeatonal)    return "Pasaje Peatonal";
             return "Vía";
         }
-        };
-    }
+    };
+    
 
     public class Manzana
     {

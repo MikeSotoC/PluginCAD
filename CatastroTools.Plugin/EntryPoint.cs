@@ -9,10 +9,10 @@ using CatastroTools.CAD.Interfaces;
 using CatastroTools.Core.Models;
 
 #if ZWCAD
-using ZwCAD.Runtime;
-using ZwCAD.ApplicationServices;
-using AcRx  = ZwCAD.Runtime;
-using AcApp = ZwCAD.ApplicationServices.Application;
+using ZwSoft.ZwCAD.Runtime;
+using ZwSoft.ZwCAD.ApplicationServices;
+using AcRx  = ZwSoft.ZwCAD.Runtime;
+using AcApp = ZwSoft.ZwCAD.ApplicationServices.Application;
 #elif AUTOCAD
 using Autodesk.AutoCAD.Runtime;
 using Autodesk.AutoCAD.ApplicationServices;
@@ -69,7 +69,7 @@ namespace CatastroTools.Plugin
                 // Inicializar capas automáticamente
                 Dibujo.InicializarCapas();
             }
-            catch (Exception ex)
+            catch (System.Exception ex)
             {
                 try { Plataforma?.MensajeError($"Error al inicializar: {ex.Message}"); }
                 catch { /* silenciar si ni la plataforma está lista */ }

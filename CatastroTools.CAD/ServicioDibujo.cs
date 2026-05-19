@@ -115,7 +115,7 @@ namespace CatastroTools.CAD
                 mid.Y + c.OffsetLindero * Math.Sin(perp));
 
             // Texto distancia
-            string dist = $"{seg.Longitud:F{c.DecimalesDistancia}} m";
+            string dist = seg.Longitud.ToString("F" + c.DecimalesDistancia) + " m";
             string label = c.MostrarRumbo ? $"{dist}  {seg.Rumbo}" : dist;
 
             _cad.InsertarTexto(offsetPt, label, h,
@@ -277,17 +277,17 @@ namespace CatastroTools.CAD
 
             _cad.InsertarTexto(
                 new Punto2D(pt.X + ox, pt.Y + oy + h * 1.4),
-                $"{c.PrefijoVertice}{numero}",
+                c.PrefijoVertice + numero,
                 h, 0, CapasCatastro.Vertices, TextoJustif.ML);
 
             _cad.InsertarTexto(
                 new Punto2D(pt.X + ox, pt.Y + oy),
-                $"E={pt.X:F{c.DecimalesUTM}}",
+                "E=" + pt.X.ToString("F" + c.DecimalesUTM),
                 h * 0.85, 0, CapasCatastro.Vertices, TextoJustif.ML);
 
             _cad.InsertarTexto(
                 new Punto2D(pt.X + ox, pt.Y + oy - h * 1.2),
-                $"N={pt.Y:F{c.DecimalesUTM}}",
+                "N=" + pt.Y.ToString("F" + c.DecimalesUTM),
                 h * 0.85, 0, CapasCatastro.Vertices, TextoJustif.ML);
         }
 
@@ -359,9 +359,7 @@ namespace CatastroTools.CAD
             double c1 = 12.0, c2 = (W - c1) / 2.0, c3 = (W - c1) / 2.0;
 
             // Encabezado
-            DibujarCelda(x, y + rH * (n + 1), W, rH,
-                $"CUADRO DE VÉRTICES UTM WGS84 — Z{CoordUtils.NombreZona(CoordUtils.DetectarZona(verts))}",
-                h, true);
+            DibujarCelda(x, y + rH * (n + 1), W, rH, $"CUADRO DE VÉRTICES UTM WGS84 — Z{CoordUtils.NombreZona(CoordUtils.DetectarZona(verts))}", h, true);
 
             // Cabecera columnas
             DibujarCelda(x,          y + rH * n, c1, rH, "VÉR.", h);
@@ -372,9 +370,10 @@ namespace CatastroTools.CAD
             for (int i = 0; i < n; i++)
             {
                 double fy = y + rH * (n - 1 - i);
-                DibujarCelda(x,          fy, c1, rH, $"V-{_cfg.NumVerticeInicial + i}", h);
-                DibujarCelda(x + c1,     fy, c2, rH, $"{verts[i].X:F{_cfg.DecimalesUTM}}", h * 0.9);
-                DibujarCelda(x + c1 + c2, fy, c3, rH, $"{verts[i].Y:F{_cfg.DecimalesUTM}}", h * 0.9);
+
+                DibujarCelda(x, fy, c1, rH, "V-" + (_cfg.NumVerticeInicial + i), h);
+                DibujarCelda( x + c1, fy, c2, rH, verts[i].X.ToString("F" + _cfg.DecimalesUTM), h * 0.9);
+                DibujarCelda( x + c1 + c2, fy, c3, rH, verts[i].Y.ToString("F" + _cfg.DecimalesUTM), h * 0.9);
             }
         }
 
@@ -511,22 +510,16 @@ namespace CatastroTools.CAD
         {
             _cad.DibujarPolilineaCerrada(new[]
             {
-                new Punto2D(x,        y),
-                new Punto2D(x + ancho, y),
-                new Punto2D(x + ancho, y + prof),
-                new Punto2D(x,        y + prof)
-            }, capa);
-
-            _cad.InsertarTexto(
-                new Punto2D(x + ancho / 2.0, y + prof / 2.0),
-                etiqueta, ancho * 0.18, 0, CapasCatastro.Labels, TextoJustif.MC);
-
-            // Acotación del ancho de la banda
-            _cad.AcotarAlineada(
                 new Punto2D(x, y),
                 new Punto2D(x + ancho, y),
-                new Punto2D(x + ancho / 2.0, y - ancho * 0.5),
-                CapasCatastro.Linderos);
+                new Punto2D(x + ancho, y + prof),
+                new Punto2D(x, y + prof)
+            }, capa);
+
+            _cad.InsertarTexto( new Punto2D(x + ancho / 2.0, y + prof / 2.0), etiqueta, ancho * 0.18, 0, CapasCatastro.Labels, TextoJustif.MC);
+
+            // Acotación del ancho de la banda
+            _cad.AcotarAlineada( new Punto2D(x, y), new Punto2D(x + ancho, y), new Punto2D(x + ancho / 2.0, y - ancho * 0.5), CapasCatastro.Linderos);
         }
 
         // ═══════════════════════════════════════════════════════
@@ -546,10 +539,7 @@ namespace CatastroTools.CAD
             }, CapasCatastro.Tabla);
 
             // Texto centrado verticalmente
-            _cad.InsertarTexto(
-                new Punto2D(x + 1.0, y + h / 2.0 - altTexto / 2.0),
-                texto ?? "",
-                altTexto, 0, CapasCatastro.Tabla, TextoJustif.ML);
+            _cad.InsertarTexto( new Punto2D(x + 1.0, y + h / 2.0 - altTexto / 2.0), texto ?? "", altTexto, 0, CapasCatastro.Tabla, TextoJustif.ML);
         }
     }
 }

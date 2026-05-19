@@ -33,11 +33,11 @@ namespace CatastroTools.UI.Views
 
             var txtTitulo = new TextBlock
             {
-                Text       = titulo,
-                FontSize   = 17,
+                Text = titulo,
+                FontSize = 17,
                 FontWeight = FontWeights.SemiBold,
                 Foreground = (Brush)FindResource("BrushTexto"),
-                Margin     = new Thickness(0, 0, 0, 4)
+                Margin = new Thickness(0, 0, 0, 4)
             };
             sp.Children.Add(txtTitulo);
 
@@ -45,10 +45,10 @@ namespace CatastroTools.UI.Views
             {
                 sp.Children.Add(new TextBlock
                 {
-                    Text       = subtitulo,
-                    FontSize   = 12,
+                    Text = subtitulo,
+                    FontSize = 12,
                     Foreground = (Brush)FindResource("BrushTextoSec"),
-                    Margin     = new Thickness(0, 0, 0, 20)
+                    Margin = new Thickness(0, 0, 0, 20)
                 });
             }
             return sp;
@@ -58,13 +58,13 @@ namespace CatastroTools.UI.Views
         {
             var b = new Border
             {
-                Background      = (Brush)FindResource("BrushTarjeta"),
-                BorderBrush     = (Brush)FindResource(accent ? "BrushAccent" : "BrushBorde"),
+                Background = (Brush)FindResource("BrushTarjeta"),
+                BorderBrush = (Brush)FindResource(accent ? "BrushAccent" : "BrushBorde"),
                 BorderThickness = new Thickness(1),
-                CornerRadius    = new CornerRadius(8),
-                Padding         = new Thickness(16),
-                Margin          = new Thickness(0, 0, 0, 12),
-                Child           = contenido
+                CornerRadius = new CornerRadius(8),
+                Padding = new Thickness(16),
+                Margin = new Thickness(0, 0, 0, 12),
+                Child = contenido
             };
             return b;
         }
@@ -74,11 +74,11 @@ namespace CatastroTools.UI.Views
             var sp = new StackPanel { Margin = new Thickness(0, 4, 0, 0) };
             sp.Children.Add(new TextBlock
             {
-                Text       = titulo.ToUpper(),
-                FontSize   = 11,
+                Text = titulo.ToUpper(),
+                FontSize = 11,
                 FontWeight = FontWeights.SemiBold,
                 Foreground = (Brush)FindResource("BrushAccent"),
-                Margin     = new Thickness(0, 16, 0, 8)
+                Margin = new Thickness(0, 16, 0, 8)
             });
             return sp;
         }
@@ -92,12 +92,12 @@ namespace CatastroTools.UI.Views
 
             var lbl = new TextBlock
             {
-                Text               = label,
-                Foreground         = (Brush)FindResource("BrushTextoSec"),
-                FontSize           = 11,
-                FontWeight         = FontWeights.Medium,
-                VerticalAlignment  = VerticalAlignment.Center,
-                Margin             = new Thickness(0, 0, 12, 0)
+                Text = label,
+                Foreground = (Brush)FindResource("BrushTextoSec"),
+                FontSize = 11,
+                FontWeight = FontWeights.Medium,
+                VerticalAlignment = VerticalAlignment.Center,
+                Margin = new Thickness(0, 0, 12, 0)
             };
             Grid.SetColumn(lbl, 0);
             Grid.SetColumn(control, 2);
@@ -110,9 +110,9 @@ namespace CatastroTools.UI.Views
         {
             var tb = new TextBox
             {
-                Text      = valor,
-                Style     = (Style)FindResource("InputBase"),
-                MinWidth  = 200
+                Text = valor,
+                Style = (Style)FindResource("InputBase"),
+                MinWidth = 200
             };
             return tb;
         }
@@ -121,7 +121,7 @@ namespace CatastroTools.UI.Views
         {
             var cb = new ComboBox
             {
-                Style    = (Style)FindResource("ComboBase"),
+                Style = (Style)FindResource("ComboBase"),
                 MinWidth = 200
             };
             foreach (var op in opciones) cb.Items.Add(op);
@@ -133,9 +133,9 @@ namespace CatastroTools.UI.Views
         {
             return new CheckBox
             {
-                Content   = texto,
+                Content = texto,
                 IsChecked = valor,
-                Style     = (Style)FindResource("CheckBase")
+                Style = (Style)FindResource("CheckBase")
             };
         }
 
@@ -143,11 +143,11 @@ namespace CatastroTools.UI.Views
         {
             return new TextBlock
             {
-                Text        = texto,
-                FontSize    = 11,
-                Foreground  = (Brush)FindResource("BrushTextoSec"),
+                Text = texto,
+                FontSize = 11,
+                Foreground = (Brush)FindResource("BrushTextoSec"),
                 TextWrapping = TextWrapping.Wrap,
-                Margin      = new Thickness(0, 0, 0, 8)
+                Margin = new Thickness(0, 0, 0, 8)
             };
         }
 
@@ -155,18 +155,18 @@ namespace CatastroTools.UI.Views
         {
             var b = new Border
             {
-                Background      = new SolidColorBrush(Color.FromArgb(30, 59, 130, 246)),
-                BorderBrush     = (Brush)FindResource("BrushAccent"),
+                Background = new SolidColorBrush(Color.FromArgb(30, 59, 130, 246)),
+                BorderBrush = (Brush)FindResource("BrushAccent"),
                 BorderThickness = new Thickness(1, 0, 0, 0),
-                CornerRadius    = new CornerRadius(0, 4, 4, 0),
-                Padding         = new Thickness(12, 8),
-                Margin          = new Thickness(0, 0, 0, 12)
+                CornerRadius = new CornerRadius(0, 4, 4, 0),
+                Padding = new Thickness(12, 8, 12, 8),
+                Margin = new Thickness(0, 0, 0, 12)
             };
             b.Child = new TextBlock
             {
-                Text        = texto,
-                FontSize    = 11,
-                Foreground  = (Brush)FindResource("BrushTexto"),
+                Text = texto,
+                FontSize = 11,
+                Foreground = (Brush)FindResource("BrushTexto"),
                 TextWrapping = TextWrapping.Wrap
             };
             return b;
@@ -180,19 +180,26 @@ namespace CatastroTools.UI.Views
                 HorizontalAlignment = HorizontalAlignment.Right,
                 Margin = new Thickness(0, 16, 0, 0)
             };
-            foreach (var (texto, cmd, primario) in botones)
+            foreach (var item in botones)
             {
+                string texto = item.texto;
+                string cmd = item.cmd;
+                bool primario = item.primario;
+
                 var btn = new Button
                 {
                     Content = texto,
-                    Style   = primario
+                    Style = primario
                         ? (Style)FindResource("BtnPrimario")
                         : (Style)FindResource("BtnSecundario"),
-                    Margin  = new Thickness(8, 0, 0, 0),
+                    Margin = new Thickness(8, 0, 0, 0),
                     MinWidth = 100
                 };
+
                 var cmdLocal = cmd;
+
                 btn.Click += (s, e) => Ejecutar(cmdLocal);
+
                 sp.Children.Add(btn);
             }
             return sp;

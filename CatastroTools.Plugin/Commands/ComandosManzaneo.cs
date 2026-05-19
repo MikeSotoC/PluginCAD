@@ -1,13 +1,14 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using CatastroTools.CAD;
 using CatastroTools.CAD.Interfaces;
 using CatastroTools.Core.Geometry;
 using CatastroTools.Core.Models;
 using CatastroTools.Plugin.UI;
 
 #if ZWCAD
-using ZwCAD.Runtime;
+using ZwSoft.ZwCAD.Runtime;
 #elif AUTOCAD
 using Autodesk.AutoCAD.Runtime;
 #endif
@@ -61,7 +62,7 @@ namespace CatastroTools.Plugin.Commands
                 Cad.MensajeConsola($"✓ Vía '{via.Nombre}' trazada. Ancho: {via.Ancho:F2} m");
             }
             catch (OperationCanceledException) { Cad.MensajeConsola("Cancelado."); }
-            catch (Exception ex) { Cad.MensajeError(ex.Message); }
+            catch (System.Exception ex) { Cad.MensajeError(ex.Message); }
         }
 
         // ─── CT-VIAS-GRILLA ────────────────────────────────────
@@ -123,7 +124,7 @@ namespace CatastroTools.Plugin.Commands
                 Cad.MensajeConsola("  Siguiente: CT-MANZANEO-GRILLA");
             }
             catch (OperationCanceledException) { Cad.MensajeConsola("Cancelado."); }
-            catch (Exception ex) { Cad.MensajeError(ex.Message); }
+            catch (System.Exception ex) { Cad.MensajeError(ex.Message); }
         }
 
         // ─── CT-MANZANEO ───────────────────────────────────────
@@ -171,7 +172,7 @@ namespace CatastroTools.Plugin.Commands
                 Cad.MensajeConsola("  Siguiente: CT-LOTIZAR sobre cada manzana.");
             }
             catch (OperationCanceledException) { Cad.MensajeConsola("Cancelado."); }
-            catch (Exception ex) { Cad.MensajeError(ex.Message); }
+            catch (System.Exception ex) { Cad.MensajeError(ex.Message); }
         }
 
         // ─── CT-MANZANEO-GRILLA ────────────────────────────────
@@ -207,7 +208,7 @@ namespace CatastroTools.Plugin.Commands
                 Cad.MensajeConsola($"✓ {manzanas.Count} manzanas generadas.");
             }
             catch (OperationCanceledException) { Cad.MensajeConsola("Cancelado."); }
-            catch (Exception ex) { Cad.MensajeError(ex.Message); }
+            catch (System.Exception ex) { Cad.MensajeError(ex.Message); }
         }
 
         // ─── CT-SECCION-VIA ────────────────────────────────────
@@ -225,7 +226,7 @@ namespace CatastroTools.Plugin.Commands
                 Cad.MensajeConsola($"✓ Sección de '{via.Nombre}' insertada.");
             }
             catch (OperationCanceledException) { Cad.MensajeConsola("Cancelado."); }
-            catch (Exception ex) { Cad.MensajeError(ex.Message); }
+            catch (System.Exception ex) { Cad.MensajeError(ex.Message); }
         }
 
         // ─── UTILIDAD: OFFSET DE POLILÍNEA ────────────────────

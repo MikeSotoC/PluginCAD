@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props"
-          Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">x64</Platform>
@@ -34,6 +33,15 @@
     <OutputPath>bin\x64\Release-AutoCAD\</OutputPath>
     <DefineConstants>TRACE;AUTOCAD</DefineConstants>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug_AutoCAD|x64'">
+    <OutputPath>bin\x64\Debug_AutoCAD\</OutputPath>
+    <DefineConstants>AUTOCAD</DefineConstants>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug_ZWCAD|x64'">
+    <OutputPath>bin\x64\Debug_ZWCAD\</OutputPath>
+    <WarningLevel>3</WarningLevel>
+    <DefineConstants>ZWCAD</DefineConstants>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -43,6 +51,15 @@
     <Reference Include="PresentationFramework" />
     <Reference Include="WindowsBase" />
     <Reference Include="System.Xaml" />
+    <Reference Include="ZwDatabaseMgd">
+      <HintPath>..\..\..\..\..\Program Files\ZWSOFT\ZWCAD 2026\ZwDatabaseMgd.dll</HintPath>
+    </Reference>
+    <Reference Include="ZwManaged">
+      <HintPath>..\..\..\..\..\Program Files\ZWSOFT\ZWCAD 2026\ZwManaged.dll</HintPath>
+    </Reference>
+    <Reference Include="ZwWinFormUI">
+      <HintPath>..\..\..\..\..\Program Files\ZWSOFT\ZWCAD 2026\ZwWinFormUI.dll</HintPath>
+    </Reference>
     <!--
       AGREGAR MANUALMENTE — ZWCAD:
         C:\Program Files\ZWSOFT\ZWCAD 2024\ZwCAD.Interop.dll       (CopyLocal=False)

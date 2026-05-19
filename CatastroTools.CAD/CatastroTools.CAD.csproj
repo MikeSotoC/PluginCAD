@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props"
-          Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">x64</Platform>
@@ -34,10 +33,34 @@
     <OutputPath>bin\x64\Release-AutoCAD\</OutputPath>
     <DefineConstants>TRACE;AUTOCAD</DefineConstants>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug_AutoCAD|x64'">
+    <OutputPath>bin\x64\Debug_AutoCAD\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug_ZWCAD|x64'">
+    <OutputPath>bin\x64\Debug_ZWCAD\</OutputPath>
+    <DefineConstants>ZWCAD</DefineConstants>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="ZwDatabaseMgd">
+      <HintPath>..\..\Nueva carpeta\Nueva carpeta\ZwDatabaseMgd.dll</HintPath>
+    </Reference>
+    <Reference Include="ZwDatabaseMgdBrep">
+      <HintPath>..\..\Nueva carpeta\Nueva carpeta\ZwDatabaseMgdBrep.dll</HintPath>
+    </Reference>
+    <Reference Include="ZwManaged">
+      <HintPath>..\..\Nueva carpeta\Nueva carpeta\ZwManaged.dll</HintPath>
+    </Reference>
+    <Reference Include="ZwSoft.ZwCAD.Interop">
+      <HintPath>..\..\Nueva carpeta\Nueva carpeta\ZwSoft.ZwCAD.Interop.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="ZwSoft.ZwCAD.Interop.Common">
+      <HintPath>..\..\Nueva carpeta\Nueva carpeta\ZwSoft.ZwCAD.Interop.Common.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
     <!--
       AGREGAR MANUALMENTE EN VS2019:
       ZWCAD:   Proyecto > Agregar referencia > Examinar

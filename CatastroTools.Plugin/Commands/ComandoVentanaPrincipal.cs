@@ -4,9 +4,9 @@ using System.Windows.Threading;
 using CatastroTools.UI.Views;
 
 #if ZWCAD
-using ZwCAD.Runtime;
-using ZwCAD.ApplicationServices;
-using AcApp = ZwCAD.ApplicationServices.Application;
+using ZwSoft.ZwCAD.Runtime;
+using ZwSoft.ZwCAD.ApplicationServices;
+using AcApp = ZwSoft.ZwCAD.ApplicationServices.Application;
 #elif AUTOCAD
 using Autodesk.AutoCAD.Runtime;
 using Autodesk.AutoCAD.ApplicationServices;
@@ -52,7 +52,7 @@ namespace CatastroTools.Plugin.Commands
 
                 CatastroPlugin.Plataforma.MensajeConsola("Panel CatastroTools abierto.");
             }
-            catch (Exception ex)
+            catch (System.Exception ex)
             {
                 CatastroPlugin.Plataforma.MensajeError($"Error al abrir el panel: {ex.Message}");
             }

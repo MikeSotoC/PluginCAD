@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using CatastroTools.Core.Models;
@@ -15,7 +16,7 @@ namespace CatastroTools.Plugin.UI
     // ═══════════════════════════════════════════════════════════
     // VENTANA: VÍA POR EJE
     // ═══════════════════════════════════════════════════════════
-    public class VentanaVia : Window
+    public class VentanaVia : CatastroWindow
     {
         public Via ResultadoVia { get; private set; }
 
@@ -152,7 +153,7 @@ namespace CatastroTools.Plugin.UI
     // ═══════════════════════════════════════════════════════════
     // VENTANA: GRILLA DE VÍAS
     // ═══════════════════════════════════════════════════════════
-    public class VentanaViasGrilla : Window
+    public class VentanaViasGrilla : CatastroWindow
     {
         public (double AnchoH, double SepH, string NombreH,
                 double AnchoV, double SepV, string NombreV) Parametros { get; private set; }
@@ -195,7 +196,7 @@ namespace CatastroTools.Plugin.UI
     // ═══════════════════════════════════════════════════════════
     // VENTANA: SECCIÓN DE VÍA
     // ═══════════════════════════════════════════════════════════
-    public class VentanaSeccionVia : Window
+    public class VentanaSeccionVia : CatastroWindow
     {
         public Via ResultadoVia { get; private set; }
         private TextBox _txNombre, _txAncho, _txCalzada, _txVereda, _txBerma;
@@ -238,7 +239,7 @@ namespace CatastroTools.Plugin.UI
     // ═══════════════════════════════════════════════════════════
     // VENTANA: MANZANEO
     // ═══════════════════════════════════════════════════════════
-    public class VentanaManzaneo : Window
+    public class VentanaManzaneo : CatastroWindow
     {
         public SistemaNomenclatura Sistema     { get; private set; }
         public int                 Inicio      { get; private set; }
@@ -283,7 +284,7 @@ namespace CatastroTools.Plugin.UI
     // ═══════════════════════════════════════════════════════════
     // VENTANA: MANZANEO GRILLA
     // ═══════════════════════════════════════════════════════════
-    public class VentanaManzaneoGrilla : Window
+    public class VentanaManzaneoGrilla : CatastroWindow
     {
         public double              AnchoViaH   { get; private set; }
         public double              AnchoViaV   { get; private set; }
@@ -338,7 +339,7 @@ namespace CatastroTools.Plugin.UI
     // ═══════════════════════════════════════════════════════════
     // VENTANA: LOTIZACIÓN
     // ═══════════════════════════════════════════════════════════
-    public class VentanaLotizacion : Window
+    public class VentanaLotizacion : CatastroWindow
     {
         public string  Prefijo             { get; private set; }
         public int     NumInicial          { get; private set; }
@@ -381,7 +382,7 @@ namespace CatastroTools.Plugin.UI
     // ═══════════════════════════════════════════════════════════
     // VENTANA: HABILITACIÓN
     // ═══════════════════════════════════════════════════════════
-    public class VentanaHabilitacion : Window
+    public class VentanaHabilitacion : CatastroWindow
     {
         public double AnchoLote  { get; private set; }
         public double ProfLote   { get; private set; }
@@ -426,7 +427,7 @@ namespace CatastroTools.Plugin.UI
     // ═══════════════════════════════════════════════════════════
     // VENTANA: ETIQUETAR LOTE
     // ═══════════════════════════════════════════════════════════
-    public class VentanaEtiquetaLote : Window
+    public class VentanaEtiquetaLote : CatastroWindow
     {
         public Lote       ResultadoLote { get; private set; }
         public ConfigTexto ConfigTexto  { get; private set; }
@@ -485,7 +486,7 @@ namespace CatastroTools.Plugin.UI
     // ═══════════════════════════════════════════════════════════
     // VENTANA: ACOTAR COMPLETO
     // ═══════════════════════════════════════════════════════════
-    public class VentanaAcotar : Window
+    public class VentanaAcotar : CatastroWindow
     {
         public Lote       ResultadoLote { get; private set; }
         public ConfigTexto ConfigTexto  { get; private set; }
@@ -542,7 +543,7 @@ namespace CatastroTools.Plugin.UI
     // ═══════════════════════════════════════════════════════════
     // VENTANA: VÉRTICES
     // ═══════════════════════════════════════════════════════════
-    public class VentanaVertices : Window
+    public class VentanaVertices : CatastroWindow
     {
         public ConfigTexto ConfigTexto  { get; private set; }
         public string      TipoSimbolo { get; private set; }
@@ -597,7 +598,7 @@ namespace CatastroTools.Plugin.UI
     // ═══════════════════════════════════════════════════════════
     // VENTANA: IMPORTAR COORDS
     // ═══════════════════════════════════════════════════════════
-    public class VentanaImportarCoords : Window
+    public class VentanaImportarCoords : CatastroWindow
     {
         public List<Punto2D> Puntos      { get; private set; } = new List<Punto2D>();
         public bool          MarcarVertices { get; private set; }
@@ -662,7 +663,7 @@ namespace CatastroTools.Plugin.UI
     // ═══════════════════════════════════════════════════════════
     // VENTANA: TABLA TÉCNICA
     // ═══════════════════════════════════════════════════════════
-    public class VentanaTabla : Window
+    public class VentanaTabla : CatastroWindow
     {
         public Lote   ResultadoLote { get; private set; }
         public double AnchoTabla   { get; private set; }
@@ -734,7 +735,7 @@ namespace CatastroTools.Plugin.UI
     // ═══════════════════════════════════════════════════════════
     // VENTANA: COLINDANCIAS
     // ═══════════════════════════════════════════════════════════
-    public class VentanaColindancias : Window
+    public class VentanaColindancias : CatastroWindow
     {
         public string Norte { get; private set; }
         public string Sur   { get; private set; }
@@ -772,7 +773,7 @@ namespace CatastroTools.Plugin.UI
     // ═══════════════════════════════════════════════════════════
     // VENTANA: EXPORT HTML
     // ═══════════════════════════════════════════════════════════
-    public class VentanaExportHTML : Window
+    public class VentanaExportHTML : CatastroWindow
     {
         public Lote ResultadoLote { get; private set; }
         private TextBox _txProp, _txDni, _txDir, _txDist, _txPart, _txLote;
@@ -816,7 +817,7 @@ namespace CatastroTools.Plugin.UI
     // ═══════════════════════════════════════════════════════════
     // VENTANA: CONFIGURACIÓN
     // ═══════════════════════════════════════════════════════════
-    public class VentanaConfiguracion : Window
+    public class VentanaConfiguracion : CatastroWindow
     {
         public ConfigTexto ConfigResultado { get; private set; }
         private readonly ConfigTexto _cfg;

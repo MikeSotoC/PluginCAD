@@ -22,15 +22,16 @@ using CatastroTools.CAD.Interfaces;
 using CatastroTools.Core.Models;
 
 #if ZWCAD
-using ZwCAD.ApplicationServices;
-using ZwCAD.DatabaseServices;
-using ZwCAD.EditorInput;
-using ZwCAD.Geometry;
-using ZwCAD.Runtime;
-using AcApp   = ZwCAD.ApplicationServices.Application;
-using AcDb    = ZwCAD.DatabaseServices;
-using AcGe    = ZwCAD.Geometry;
-using AcEd    = ZwCAD.EditorInput;
+using ZwSoft.ZwCAD.ApplicationServices;
+using ZwSoft.ZwCAD.DatabaseServices;
+using ZwSoft.ZwCAD.EditorInput;
+using ZwSoft.ZwCAD.Geometry;
+using ZwSoft.ZwCAD.Runtime;
+using AcApp   = ZwSoft.ZwCAD.ApplicationServices.Application;
+using AcDb    = ZwSoft.ZwCAD.DatabaseServices;
+using AcGe    = ZwSoft.ZwCAD.Geometry;
+using AcEd    = ZwSoft.ZwCAD.EditorInput;
+using AcColor = ZwSoft.ZwCAD.Colors;
 #endif
 
 namespace CatastroTools.CAD.ZwCAD
@@ -71,7 +72,7 @@ namespace CatastroTools.CAD.ZwCAD
                 var lr = new LayerTableRecord
                 {
                     Name  = nombre,
-                    Color = AcDb.Color.FromColorIndex(ColorMethod.ByAci, (short)colorAci)
+                    Color = AcColor.Color.FromColorIndex( AcColor.ColorMethod.ByAci, (short)colorAci) 
                 };
                 // Asignar tipo de línea si no es Continuous
                 if (tipLinea != "Continuous")
@@ -460,4 +461,4 @@ namespace CatastroTools.CAD.ZwCAD
         }
     }
 #endif
-}
+                }
