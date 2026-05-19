@@ -1,11 +1,13 @@
 using GeoSuite.Core.Models;
 using GeoSuite.Platform;
+using GeoSuite.Settings.Services;
 
 namespace GeoSuite.Catastro.Module.Commands;
 
 /// <summary>
 /// Comando: GS-C-POLY
 /// Dibuja polígono catastral desde coordenadas o selección
+/// Usa configuración global para tamaños de texto dinámicos.
 /// </summary>
 public class DrawPolyCmd
 {
@@ -37,8 +39,12 @@ public class DrawPolyCmd
         double perimeter = polygon.Perimeter;
         var centroid = polygon.Centroid;
 
-        string label = $"Área: {area:N2} m²\nPerím: {perimeter:N2} m";
-        _cad.AddText(label, centroid, 2.5, "CATASTRO-TEXTO");
+        // Obtener configuración global para tamaño de texto dinámico
+        var settings = SettingsManager.Load();
+        double textSize = SettingsManager.GetScaledTextSize(1.0); // Tamaño base
+        
+        string label = $"Área: {area:N{settings.Catastro.AreaDecimals}} m²\nPerím: {perimeter:N{settings.Catastro.DistanceDecimals}} m";
+        _cad.AddText(label, centroid, textSize, "CATASTRO-TEXTO");
 
         _cad.ShowMessage("Éxito", $"Polígono dibujado. Área: {area:N2} m²");
     }

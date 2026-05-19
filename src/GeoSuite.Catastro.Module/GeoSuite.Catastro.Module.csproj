@@ -11,6 +11,8 @@
   <ItemGroup>
     <ProjectReference Include="..\GeoSuite.Core\GeoSuite.Core.csproj" />
     <ProjectReference Include="..\GeoSuite.Platform\GeoSuite.Platform.csproj" />
+    <ProjectReference Include="..\GeoSuite.Settings\GeoSuite.Settings.csproj" />
+    <ProjectReference Include="..\GeoSuite.UI.WinForms\GeoSuite.UI.WinForms.csproj" />
   </ItemGroup>
 
 </Project>

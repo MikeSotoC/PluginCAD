@@ -11,11 +11,54 @@ GeoSuite/
 ├── src/
 │   ├── GeoSuite.Core/              # Lógica matemática y modelos (independiente de CAD)
 │   ├── GeoSuite.Platform/          # Abstracción de plataforma CAD (AutoCAD/ZwCAD)
+│   ├── GeoSuite.Settings/          # Configuración global persistente (JSON)
+│   ├── GeoSuite.UI.WinForms/       # Interfaz WinForms (diálogos, configuraciones)
 │   ├── GeoSuite.Survey.Module/     # Módulo de Topografía (DLL independiente)
 │   ├── GeoSuite.Catastro.Module/   # Módulo de Catastro (DLL independiente)
 │   ├── GeoSuite.Roadway.Module/    # Módulo de Vías/Carreteras (DLL independiente)
 │   └── GeoSuite.Hydraulics.Module/ # Módulo de Hidráulica/Drenaje (DLL independiente)
 ```
+
+---
+
+## 🎛️ Sistema de Configuración Global
+
+GeoSuite incluye un sistema de configuración centralizado que controla:
+
+### Características Principales
+
+1. **Textos Dinámicos por Escala**
+   - Los tamaños de texto se ajustan automáticamente según la escala del dibujo
+   - Fórmula: `Tamaño Real = Base × (Escala / 1000)`
+   - Ejemplo: Base=2.5, Escala 1:2000 → Texto=5.0 unidades
+
+2. **Tipos de Numeración Configurable**
+   - **Numérico**: L-1, L-2, L-3... (para lotes)
+   - **Alfabético**: L-A, L-B, L-C... (para manzanas urbanas)
+
+3. **Preferencias por Módulo**
+   - Decimales para áreas y distancias
+   - Equidistancia de curvas de nivel
+   - Mostrar/ocultar colindancias, perímetros, descripciones
+
+### Comando de Configuración
+
+```
+GS-CONFIG
+```
+
+Abre el formulario WinForms con 3 pestañas:
+- **General**: Escala del dibujo, tamaño base de texto, prefijo de capas
+- **Catastro**: Tipo de numeración, prefijos, opciones de etiquetado
+- **Topografía**: Equidistancias, tamaño de texto, capas por defecto
+
+### Persistencia
+
+La configuración se guarda en:
+- Windows: `%APPDATA%/GeoSuite/geosuite_config.json`
+- Linux/Mac: `./geosuite_config.json`
+
+---
 
 ## Módulos Disponibles
 
@@ -26,23 +69,41 @@ GeoSuite/
 | `GS-T-IMP` | Importar puntos desde CSV (N,E,Z,Código,Descripción) |
 | `GS-T-TIN` | Generar malla triangular (TIN) con Delaunay |
 | `GS-T-CN` | Generar curvas de nivel con intervalo configurable |
+| `GS-T-PERF` | Dibujar perfil longitudinal con cuadrícula |
+| `GS-T-VOL` | Calcular volúmenes por método de promedio de áreas |
 
 **Capas creadas:**
 - `TOPO-PUNTOS` (Rojo) - Puntos topográficos
 - `TOPO-DATOS` (Verde) - Etiquetas de cotas
 - `TOPO-TIN` (Cyan) - Malla triangular
-- `TOPO-CURVAS-PRINC` (Amarillo) - Curvas maestras
-- `TOPO-CURVAS-SEC` (Gris) - Curvas secundarias
+- `TOPO-CURVAS-1M` (Amarillo) - Curvas secundarias
+- `TOPO-CURVAS-5M` (Magenta) - Curvas maestras
+- `TOPO-PERFIL-GRID` - Cuadrícula de perfiles
+- `TOPO-VOLUMENES` - Resultados de cálculo
+
+---
 
 ### 2. Catastro (`GeoSuite.Catastro.Module.dll`)
 
 | Comando | Descripción |
 |---------|-------------|
 | `GS-C-POLY` | Dibujar polígono catastral con cálculo automático de área |
+| `GS-C-LBL` | Etiquetar lotes con numeración automática (configurable) |
+| `GS-CONFIG` | Abrir configuración global (texto dinámico, numeración) |
+
+**Características de Etiquetado:**
+- Numeración numérica o alfabética según configuración
+- Texto de tamaño dinámico según escala del dibujo
+- Opción de mostrar área, perímetro y colindancias
+- Decimales configurables para áreas y distancias
 
 **Capas creadas:**
 - `CATASTRO-LINDEROS` (Rojo) - Líneas de linderos
 - `CATASTRO-TEXTO` (Blanco) - Etiquetas de área/perímetro
+- `CATASTRO-LOTES-TEXTO` (Verde) - Identificación de lotes
+- `CATASTRO-COLINDANCIAS` (Gris) - Distancias entre vértices
+
+---
 
 ### 3. Vías/Carreteras (`GeoSuite.Roadway.Module.dll`)
 
