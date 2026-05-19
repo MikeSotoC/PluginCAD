@@ -13,10 +13,14 @@ namespace CatastroTools.UI.Views
         private string _zonaUTM = "18S";
         private int    _manzanasCount = 0;
         private int    _lotesCount = 0;
+        private string _plataformaNombre = "";
+        private string _plataformaVersion = "";
 
         public string ZonaUTM           { get => _zonaUTM;           set => Set(ref _zonaUTM, value); }
         public int    ManzanasCount     { get => _manzanasCount;     set => Set(ref _manzanasCount, value); }
         public int    LotesCount        { get => _lotesCount;        set => Set(ref _lotesCount, value); }
+        public string PlataformaNombre  { get => _plataformaNombre;  set => Set(ref _plataformaNombre, value); }
+        public string PlataformaVersion { get => _plataformaVersion; set => Set(ref _plataformaVersion, value); }
 
         // Acción ejecutora — asignada desde el Plugin
         public Action<string> EjecutarComando { get; set; }
