@@ -27,6 +27,10 @@
                                FontSize="9"
                                Foreground="{StaticResource BrushTextoSec}"
                                Margin="4,0,0,0"/>
+                    <TextBlock Text="{Binding PlataformaNombre, StringFormat=' | {0}'}"
+                               FontSize="9"
+                               Foreground="{StaticResource BrushTextoSec}"
+                               Margin="8,0,0,0"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Right"
                             VerticalAlignment="Center">

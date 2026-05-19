@@ -265,13 +265,13 @@
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsMouseOver" Value="True">
                             <Setter TargetName="bd" Property="Background"
-                                    Value="{StaticResource BrushPrimario}"/>
+                                    Value="{StaticResource BrushAccent}"/>
                             <Setter Property="Foreground"
                                     Value="White"/>
                         </Trigger>
                         <Trigger Property="IsPressed" Value="True">
                             <Setter TargetName="bd" Property="Background"
-                                    Value="{StaticResource BrushPrimarioOscuro}"/>
+                                    Value="#FF2563EB"/>
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
