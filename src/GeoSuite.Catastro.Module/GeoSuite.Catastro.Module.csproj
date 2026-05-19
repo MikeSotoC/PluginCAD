@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0-windows</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <RootNamespace>GeoSuite.Catastro.Module</RootNamespace>
+    <AssemblyName>GeoSuite.Catastro.Module</AssemblyName>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\GeoSuite.Core\GeoSuite.Core.csproj" />
+    <ProjectReference Include="..\GeoSuite.Platform\GeoSuite.Platform.csproj" />
+  </ItemGroup>
+
+</Project>
