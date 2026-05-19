@@ -231,9 +231,52 @@
     </Style>
 
     <Style x:Key="BtnIcono" TargetType="Button" BasedOn="{StaticResource BtnSecundario}">
-        <Setter Property="Width"   Value="36"/>
-        <Setter Property="Height"  Value="36"/>
+        <Setter Property="Width"   Value="22"/>
+        <Setter Property="Height"  Value="22"/>
         <Setter Property="Padding" Value="0"/>
+        <Setter Property="FontSize" Value="10"/>
+    </Style>
+
+    <!-- ═══════════════════════════════════════════════ -->
+    <!-- BOTÓN COMPACTO (para toolpalette) -->
+    <!-- ═══════════════════════════════════════════════ -->
+    <Style x:Key="BtnCompacto" TargetType="Button">
+        <Setter Property="Height"     Value="26"/>
+        <Setter Property="MinWidth"   Value="70"/>
+        <Setter Property="Margin"     Value="2"/>
+        <Setter Property="Padding"    Value="8,4"/>
+        <Setter Property="FontSize"   Value="9"/>
+        <Setter Property="Foreground" Value="{StaticResource BrushTexto}"/>
+        <Setter Property="Background" Value="{StaticResource BrushInput}"/>
+        <Setter Property="BorderBrush" Value="{StaticResource BrushSeparador}"/>
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="Cursor"     Value="Hand"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border x:Name="bd" Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            CornerRadius="3">
+                        <ContentPresenter HorizontalAlignment="Center"
+                                          VerticalAlignment="Center"
+                                          Margin="4,0,4,0"/>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="bd" Property="Background"
+                                    Value="{StaticResource BrushPrimario}"/>
+                            <Setter Property="Foreground"
+                                    Value="White"/>
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter TargetName="bd" Property="Background"
+                                    Value="{StaticResource BrushPrimarioOscuro}"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
     </Style>
 
     <Style x:Key="BtnExito" TargetType="Button" BasedOn="{StaticResource BtnPrimario}">
